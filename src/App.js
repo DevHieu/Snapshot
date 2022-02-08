@@ -27,7 +27,7 @@ function App() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyPress={enterPress}
-          placeholder="Tìm Kiếm"
+          placeholder="Tìm Kiếm...."
         />
         {body}
       </changeContext.Provider>
