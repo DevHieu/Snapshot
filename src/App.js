@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "./components/RandomPhoto";
+import React, { useState, createContext } from "react";
+import RandomPhoto from "./components/RandomPhoto";
+import SearchPhoto from "./components/SearchPhoto";
+export const changeContext = createContext();
 
 function App() {
+  const [query, setQuery] = useState("");
+  const [body, setBody] = useState(<RandomPhoto />);
+
+  const enterPress = (evn) => {
+    if (evn.key === "Enter") {
+      if (query !== "") {
+        setBody(<SearchPhoto />);
+      } else {
+        setBody(<RandomPhoto />);
+      }
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <changeContext.Provider value={query}>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyPress={enterPress}
+        />
+        {body}
+      </changeContext.Provider>
     </div>
   );
 }
