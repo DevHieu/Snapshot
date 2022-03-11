@@ -16,7 +16,6 @@ export default function RandomPhoto() {
 
   const masonryOptions = {
     fitWidth: false,
-    columnWidth: 300,
     gutter: 30,
     itemSelector: ".photo-item",
   };
